@@ -1,0 +1,1286 @@
+/* 1. Define your "Eye-Care" colors */
+:root {
+  --bg-color: #f4f4f2; /* Soft White */
+  --text-color: #1a1a1a;
+  --card-bg: #ffffff;
+}
+
+/* 2. When the checkbox is clicked, swap the variables */
+/* This works because your toggle is in the header, and we can target the whole page */
+:has(#input:checked) {
+  --bg-color: #212020; /* Deep Dark */
+  --text-color: #e2fff1;
+  --card-bg: #2a2a2a;
+}
+
+/* 3. Apply these to the body */
+body {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  transition: background 0.4s ease; /* Matches your toggle speed! */
+}
+
+/* Apply to your cards and sidebar too */
+.book-card, .news-sidebar {
+  background-color: var(--card-bg) !important;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 12px;
+  background: #32ffad; 
+  color: #e2fff1;
+  padding: 10px 20px;
+  height: 60px;
+  /* ADD THIS LINE */
+  position: relative; 
+}
+
+
+/* Container for the toggle and login button */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch #input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.group {
+  display: flex;
+  line-height: 28px;
+  align-items: center;
+  /* ADD THESE 3 LINES */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  /* Keep your existing styles below */
+  max-width: 190px;
+  z-index: 10;
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  line-height: 28px;
+  padding: 0 1rem;
+  padding-left: 2.5rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  outline: none;
+  background-color: #f3f3f4;
+  color: #0d0c22;
+  transition: 0.3s ease;
+}
+
+.input::placeholder {
+  color: #9e9ea7;
+}
+
+.input:focus,
+input:hover {
+  outline: none;
+  border-color: rgba(29, 216, 116, 0.4);
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(40, 228, 112, 0.1);
+}
+
+.icon {
+  position: absolute;
+  left: 1rem;
+  fill: #9e9ea7;
+  width: 1rem;
+  height: 1rem;
+}
+
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #2196f3;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.sun-moon {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: yellow;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+#input:checked + .slider {
+  background-color: black;
+}
+
+#input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+#input:checked + .slider .sun-moon {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  background-color: rgb(230, 229, 220);
+  -webkit-animation: rotate-center 0.6s ease-in-out both;
+  animation: rotate-center 0.6s ease-in-out both;
+}
+
+.moon-dot {
+  opacity: 0;
+  transition: 0.4s;
+  fill: gray;
+}
+
+#input:checked + .slider .sun-moon .moon-dot {
+  opacity: 1;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round .sun-moon {
+  border-radius: 50%;
+}
+
+#moon-dot-1 {
+  left: 10px;
+  top: 3px;
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  z-index: 4;
+}
+
+#moon-dot-2 {
+  left: 2px;
+  top: 10px;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  z-index: 4;
+}
+
+#moon-dot-3 {
+  left: 16px;
+  top: 18px;
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  z-index: 4;
+}
+
+#light-ray-1 {
+  left: -8px;
+  top: -8px;
+  position: absolute;
+  width: 43px;
+  height: 43px;
+  z-index: -1;
+  fill: white;
+  opacity: 10%;
+}
+
+#light-ray-2 {
+  left: -50%;
+  top: -50%;
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  z-index: -1;
+  fill: white;
+  opacity: 10%;
+}
+
+#light-ray-3 {
+  left: -18px;
+  top: -18px;
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  z-index: -1;
+  fill: white;
+  opacity: 10%;
+}
+
+.cloud-light {
+  position: absolute;
+  fill: #eee;
+  animation-name: cloud-move;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+}
+
+.cloud-dark {
+  position: absolute;
+  fill: #ccc;
+  animation-name: cloud-move;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-delay: 1s;
+}
+
+#cloud-1 {
+  left: 30px;
+  top: 15px;
+  width: 40px;
+}
+
+#cloud-2 {
+  left: 44px;
+  top: 10px;
+  width: 20px;
+}
+
+#cloud-3 {
+  left: 18px;
+  top: 24px;
+  width: 30px;
+}
+
+#cloud-4 {
+  left: 36px;
+  top: 18px;
+  width: 40px;
+}
+
+#cloud-5 {
+  left: 48px;
+  top: 14px;
+  width: 20px;
+}
+
+#cloud-6 {
+  left: 22px;
+  top: 26px;
+  width: 30px;
+}
+
+@keyframes cloud-move {
+  0% {
+    transform: translateX(0px);
+  }
+
+  40% {
+    transform: translateX(4px);
+  }
+
+  80% {
+    transform: translateX(-4px);
+  }
+
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+.stars {
+  transform: translateY(-32px);
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.star {
+  fill: white;
+  position: absolute;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  animation-name: star-twinkle;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+#input:checked + .slider .stars {
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#star-1 {
+  width: 20px;
+  top: 2px;
+  left: 3px;
+  animation-delay: 0.3s;
+}
+
+#star-2 {
+  width: 6px;
+  top: 16px;
+  left: 3px;
+}
+
+#star-3 {
+  width: 12px;
+  top: 20px;
+  left: 10px;
+  animation-delay: 0.6s;
+}
+
+#star-4 {
+  width: 18px;
+  top: 0px;
+  left: 18px;
+  animation-delay: 1.3s;
+}
+
+@keyframes star-twinkle {
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.2);
+  }
+
+  80% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+}
+
+.logo img {
+  height: 40px;   
+  width: auto;    
+  display: block; 
+}
+
+
+.header-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.header-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+/* The Navigation Link on the right */
+.auth-link {
+  display: inline-block;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  
+  /* The "Box" part */
+  background-color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(0,0,0,0.1);
+  
+  /* Smooth transition for the hover */
+  transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+/* Hover effect: Muted Green-Grey (#97c9b5) */
+.auth-link:hover {
+  background-color: #97c9b5; 
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Dark Mode Styles */
+body.dark-mode .auth-link {
+  background-color: #2a2a2a;
+  color: #e2fff1;
+  border: 1px solid #444;
+}
+
+body.dark-mode .auth-link:hover {
+  background-color: #32ffad;
+  color: #121212;
+}
+
+
+
+/* Default mode */
+body {
+  background: #ffffff;
+  color: #000000;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Dark mode */
+body.dark-mode {
+  background: #121212;
+  color: #ffffff;
+}
+
+
+/* Button styling */
+#theme-toggle {
+  margin-left: 20px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #32ffad;
+  color: #000;
+}
+
+body.dark-mode #theme-toggle {
+  background: #444;
+  color: #fff;
+}
+
+.book-slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 1000px;
+  margin: 40px auto;
+}
+
+.book-slider-window {
+  overflow: hidden;
+  width: 100%;
+  margin: 0 10px;
+}
+
+/* Update this part in your Style.css */
+.book-slider-track {
+  display: flex;
+  gap: 20px;
+  width: max-content; /* This is the "Magic" line: it makes the track as wide as all books combined */
+  transition: transform 0.5s ease-in-out;
+}
+
+.all-books {
+  flex: 3;
+}
+
+.book-card {
+  width: 180px; /* Give each book a solid width */
+  flex-shrink: 0; /* Prevents the books from squishing to fit the screen */
+}
+
+.book-card img {
+  width: 100%;
+  border-radius: 4px;
+  transition: transform 0.3s;
+}
+
+.book-card img:hover {
+  transform: scale(1.05);
+}
+
+/* Arrow Styling */
+.slider-arrow {
+  background: #32ffad;
+  border: none;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+  transition: background 0.3s;
+}
+
+.slider-arrow:hover {
+  background: #97c9b5;
+}
+
+/* Dark Mode adjustment */
+body.dark-mode .book-card {
+  background: #2a2a2a;
+  color: white;
+}
+
+/* Book Page Styles */
+.book-page {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.book-page img {
+  width: 300px;
+  border-radius: 10px;
+}
+
+.book-page h2 {
+  margin-top: 15px;
+}
+
+.book-page .author {
+  font-style: italic;
+  color: #555;
+}
+
+.book-page .description {
+  margin-top: 10px;
+  font-size: 16px;
+}
+/* book Styles end */
+
+
+/* Shared header */
+.site-header {
+  background: #5fe32b;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.site-header nav a {
+  color: white;
+  margin-left: 15px;
+  text-decoration: none;
+}
+.site-header nav a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* Book layout */
+.book-container {
+  display: flex;
+  margin: 30px;
+}
+.book-image img {
+  width: 250px;
+  border: 2px solid #ccc;
+  margin-right: 30px;
+}
+.book-info {
+  flex: 1;
+}
+.book-info h2 {
+  margin-top: 0;
+  font-size: 28px;
+}
+.book-info .author {
+  font-style: italic;
+  color: #555;
+}
+.book-info .description {
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+/* Rectangles below */
+.extra-section {
+  margin: 30px;
+}
+.big-rectangle {
+  background: #f0f0f0;
+  height: 200px;
+  margin-bottom: 20px;
+  border: 2px solid #ccc;
+  padding: 20px;
+}
+.chapters-rectangle {
+  background: #e0e0e0;
+  height: 150px;
+  border: 2px solid #aaa;
+  padding: 20px;
+}
+
+.main-layout {
+  display: flex;
+  /* Change 'center' to 'flex-start' so it fills the left first */
+  justify-content: flex-start; 
+  gap: 40px;
+  max-width: 1400px; /* Increased this to give the grid more room */
+  margin: 40px auto; /* Keeps the whole site centered, but contents start left */
+  padding: 0 40px;
+  align-items: flex-start;
+}
+
+.library-info {
+  text-align: center;
+  margin-bottom: 30px; /* space under title */
+  width: 100%;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  justify-content: center;
+}
+
+.books-wrapper {
+  align-items: center;
+}
+
+.pagination-controls {
+  margin-top: 30px; /* space from books */
+  text-align: center;
+}
+
+.book-item {
+  background: #1a1a1a;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  transition: 0.3s;
+
+  width: 200px;        /* smaller width */
+  margin: auto;        /* center each item */
+}
+
+.book-item img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.book-item:hover {
+    border: 1px solid #32ffad; /* Mint Green */
+    transform: translateY(-5px);
+}
+
+.page-btn {
+    margin: 0 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background: #333;
+    color: white;
+    border: none;
+}
+
+.page-btn.active {
+    background: #ff2d55; /* Red */
+}
+
+
+/* Ensure the Sidebar doesn't get too wide */
+.news-sidebar {
+  flex: 1;
+  min-width: 300px;
+  max-width: 350px; /* Limits the grey box so it stays on the right edge */
+  background: #f2f2f2;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+/* 4. THE SIDEBAR (Grey Section) */
+.news-sidebar {
+  flex: 1; /* Takes up 25% of the width */
+  background: #eeeeee; /* Grey from your sketch */
+  padding: 20px;
+  border-radius: 15px;
+  min-width: 250px;
+}
+
+.news-card {
+  background: #f4f4f2;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border-left: 5px solid #32ffad; /* Shelf Green Accent */
+  
+}
+
+
+.news-sidebar .news-card h4,
+.news-sidebar .news-card p,
+.news-sidebar .news-card p em {
+    color: #000000 !important; /* Forces black 100% of the time */
+}
+
+/* 5. DARK MODE FIXES */
+body.dark-mode .book-card, 
+body.dark-mode .news-sidebar {
+  background: #2a2a2a;
+  color: #f4f4f2;
+
+}
+
+body.dark-mode .book-card p {
+  color: #bbb;
+}
+
+body.dark-mode .news-card {
+  background: #333;
+}
+
+/* HOVER EFFECT */
+.book-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(50, 255, 173, 0.2);
+}
+
+
+.footer {
+  background: #32ffad;  
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.footer p {
+  margin: 5px 0;
+}
+
+.form-container {
+  position: relative;
+  perspective: 50rem;
+  width: 50rem;
+  height: 50rem;
+}
+
+#switch {
+  display: none;
+}
+
+.sign-up-form,
+.log-in-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sign-up-container,
+.log-in-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  inset: 0;
+  margin: auto;
+  width: 20rem;
+  height: 20rem;
+  background: #2fc883;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.switch-label {
+  font-size: x-small;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.form-title {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+:where(.sign-up-form, .log-in-form) label {
+  font-size: x-small;
+  padding-top: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+:where(.sign-up-form, .log-in-form) input {
+  background-color: #fff2;
+  box-sizing: border-box;
+  color: white;
+  border: 0;
+  border-bottom: 2px solid #cfb2ff;
+  padding: 0.25rem;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+:where(.sign-up-form, .log-in-form) input:focus-visible {
+  outline: none;
+  border: 1px solid white;
+  border-bottom: 2px solid #cfb2ff;
+}
+
+:where(.sign-up-form, .log-in-form) button {
+  margin-top: auto;
+  background-color: #ffffff4b;
+  color: white;
+  border: 0;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.forgot-pwd {
+  font-size: x-small;
+  text-decoration: underline;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+/* Social yoinked from uiverse.io/Yaya12085/short-panda-24 */
+
+.social-message {
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.line {
+  height: 1px;
+  flex: 1 1 0%;
+  background-color: #cfb2ff;
+}
+
+.social-message .message {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #fff;
+}
+
+.social-icons {
+  display: flex !important;
+  flex-direction: row !important; 
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+  height: auto !important;
+  margin: 10px 0 !important;
+  padding: 0 !important;
+  /* This prevents the form from stretching the icons vertically */
+  flex-shrink: 0 !important; 
+}
+
+/* 2. FORCE the buttons to be small circles/squares */
+.social-icons .icon {
+  all: unset !important; /* Deletes the "button" behavior from Uiverse */
+  display: inline-flex !important;
+  width: 40px !important;
+  height: 40px !important;
+  cursor: pointer !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease !important;
+}
+
+/* 3. Ensure the SVGs are centered and visible */
+.social-icons .icon svg {
+  width: 20px !important;
+  height: 20px !important;
+  fill: #ffffff !important;
+  margin: 0 !important;
+  display: block !important;
+}
+
+/* Hover effect for the 'Shelf' look */
+.social-icons .icon:hover {
+  background: #32ffad !important;
+  transform: translateY(-3px);
+}
+
+.social-icons .icon:hover svg {
+  fill: #1a1a1a !important; /* Dark icon on green background */
+}
+
+.sign-up-container {
+  animation: hello 0.5s linear forwards;
+}
+
+.log-in-container {
+  animation: unhello 0.5s linear forwards;
+}
+
+#switch:checked ~ .sign-up-container {
+  animation: unhello 0.5s linear forwards;
+}
+
+#switch:checked ~ .log-in-container {
+  animation: hello 0.5s linear forwards;
+}
+
+@keyframes hello {
+  0% {
+    transform: rotateY(-90deg);
+    display: none;
+  }
+  50% {
+    transform: rotateY(-90deg);
+    display: flex;
+  }
+  100% {
+    transform: rotateY(0deg);
+    display: flex;
+  }
+}
+
+@keyframes unhello {
+  0% {
+    transform: rotateY(0deg);
+    display: flex;
+  }
+  50% {
+    transform: rotateY(90deg);
+    display: flex;
+  }
+  100% {
+    transform: rotateY(90deg);
+    display: none;
+  }
+}
+
+
+.modal-overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85); /* Dark blur background */
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+/* This class makes it appear */
+.modal-overlay.show-modal {
+  display: flex;
+}
+
+/* Ensure your form-container stays on top of the black background */
+.form-container {
+  position: relative;
+  z-index: 10000;
+}
+
+.read-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff0000; /* Red */
+  color: #ffffff; /* White */
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.read-btn:hover {
+  background-color: #b30000;
+  transform: scale(1.05);
+}
+
+/* 1. The Outer Window (Shows only 5 books) */
+.slider-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    overflow: hidden; /* This hides books 6 through 9 */
+    position: relative;
+    background: #121212;
+}
+
+/* 2. The Long Track (Holds all 9 books in a row) */
+.slider-track {
+    display: flex; /* THIS FORCES THEM SIDE-BY-SIDE */
+    transition: transform 0.5s ease;
+    width: 100%; 
+}
+
+/* 3. Each Individual Book Slide */
+.slide {
+    /* 100% / 5 = 20%. This ensures exactly 5 fit the screen */
+    flex: 0 0 20%; 
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.slide img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #333;
+}
+/* Red Arrows Styling */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  color: #ff2d55;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+
+/* Cleaner Book Page */
+.book-page-wrapper {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.book-hero-card {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  background: #1f1f1f;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+.book-image img {
+  width: 260px;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid #444;
+  background: #fff;
+}
+
+.book-info {
+  flex: 1;
+}
+
+.book-info h1 {
+  margin-top: 0;
+  font-size: 34px;
+  color: #ffffff;
+}
+
+.book-info .author {
+  font-size: 18px;
+  color: #32ffad;
+  margin-bottom: 20px;
+}
+
+.book-info .description {
+  color: #e8e8e8;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.clean-extra-section {
+  margin-top: 25px;
+}
+
+.chapters-rectangle,
+.big-rectangle {
+  background: #f4f4f4;
+  border-radius: 16px;
+  border: none;
+  padding: 25px;
+  color: #111;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.chapters-rectangle {
+  min-height: 120px;
+  margin-bottom: 20px;
+}
+
+.big-rectangle {
+  min-height: 180px;
+}
+
+.book-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.read-btn {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #ff2d55;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.read-btn:hover {
+  transform: translateY(-2px);
+  background: #d81f46;
+}
+
+.favorite-btn {
+  padding: 12px 20px;
+  background: #32ffad;
+  color: #111;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.favorite-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.favorite-status {
+  margin-top: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+.profile-container {
+  position: relative;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.profile-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 10px;
+  width: 150px;
+  display: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.profile-menu.show {
+  display: block;
+}
+
+.profile-menu p {
+  margin: 0;
+  color: white;
+  font-weight: bold;
+}
+
+.profile-menu button {
+  width: 100%;
+  background: none;
+  border: none;
+  color: white;
+  padding: 8px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.profile-menu button:hover {
+  background: #32ffad;
+  color: black;
+}
+
+.profile-layout {
+  display: flex;
+  gap: 60px;
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+/* LEFT SIDE */
+.profile-left {
+  width: 280px;
+}
+
+.profile-big {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #32ffad;
+  display: block;
+  margin: 0 auto 20px auto;
+}
+
+.profile-box {
+  background: #2a2a2a;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+}
+
+/* RIGHT SIDE */
+.profile-right {
+  flex: 1;
+}
+
+.profile-right h2 {
+  margin-bottom: 20px;
+}
+
+/* FAVORITE GRID FIX */
+#favorites {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+
+.reader-wrapper {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.reader-card {
+  background: #1f1f1f;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+.reader-title {
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.reader-frame {
+  width: 100%;
+  height: 800px;
+  border: none;
+  border-radius: 12px;
+  background: #fff;
+}

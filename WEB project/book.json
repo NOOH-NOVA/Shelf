@@ -1,0 +1,70 @@
+[
+  {
+    "id": 1,
+    "title": "Stockholm",
+    "author": "Shahad Qurban",
+    "file": "StockholmBook.pdf",
+    "description": "A 2025 bestseller and new arrival in Literature and Poetry. This compelling work by Shahad Qurban explores intricate human emotions and narratives, published by the Arabic Literature Center.",
+    "image": "images/book1.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Azer: Son of the Valley Wolf",
+    "author": "Ahmed Al Hamdan",
+    "description": "A 2025 bestseller from the renowned author of the 'Ababil' saga. Spanning 420 pages, this literary journey delves into themes of strength and heritage, blending poetic prose with a gripping narrative that has quickly become a fan favorite.",
+    "file": "Azer Son of the Valley Wolf.pdf",
+    "image": "images/book2.jpg"
+  },
+  {
+    "id": 3,
+    "title": "The Balance and the Man",
+    "author": "Bandar bin Abdullah bin Mohammed bin Saud Al Kabir",
+    "description": "A 2026 release in the field of self-development, exploring the deep connection between internal balance and human growth. This 224-page guide offers modern insights into understanding life's scales and navigating them with conscious intent.",
+    "image": "images/book3.jpg"
+  },
+  {
+    "id": 4,
+    "title": "A Journey of Certainty",
+    "author": "Dr. Ibrahim Mohammed",
+    "description": "An intellectual and spiritual exploration of faith, reason, and conviction, guiding the reader through a reflective journey to find inner clarity in the modern world.",
+    "image": "images/book4.jpg"
+  },
+  {
+    "id": 5,
+    "title": "You Will See the Light",
+    "author": "Ibrahim Mohammed",
+    "description": "A 2021 bestseller in Literature and Poetry. Across 232 pages, this inspiring work offers a reflective journey through prose, designed to bring hope and clarity to the reader's perspective on life.",
+    "image": "images/book5.jpg"
+  },
+  {
+    "id": 6,
+    "title": "Understanding the Beautiful Names of Allah",
+    "author": "Abdur Razzaq al-Badr",
+    "description": "A comprehensive scholarly work that delves into the linguistic and spiritual meanings of the 99 Names of Allah. This book provides practical insights on how to reflect these attributes in daily life and worship.",
+    "image": "images/book6.jpg"
+  },
+  {
+    "id": 7,
+    "title": "Rich Dad Poor Dad (Updated for Today's World)",
+    "author": "Robert T. Kiyosaki",
+    "file": "Rich Dad Poor Dad.pdf",
+    "description": "The world's #1 personal finance book, now updated for the modern economy. Across 316 pages, Kiyosaki shares his journey and the essential lessons on money, investing, and financial literacy that aren't taught in schools.",
+    "image": "images/book7.jpg"
+  },
+  {
+    "id": 8,
+    "title": "Warren Buffett: Investor and Entrepreneur",
+    "author": "Todd A. Finkle",
+    "description": "A 2026 release exploring the life and strategies of the legendary investor. Across 317 pages, this book provides a deep dive into Buffett's business philosophy, investment principles, and his journey to becoming one of the most successful entrepreneurs in history.",
+    "image": "images/book8.jpg"
+  },
+  {
+    "id": 9,
+    "title": "fire fight",
+    "author": "Brandon Sanderson",
+    "description": "They told David it was impossible to kill an Epic. He proved them wrong. Now, in the submerged ruins of Babylon Restored, a new city of shadows and water, David must hunt a nightmare that can't be touched: Regalia. But as the line between hero and villain blurs, he discovers that the greatest danger isn't the Epics—it's the darkness within the people fighting them.",
+    "image": "images/book9.jpg"
+  }
+
+
+]
